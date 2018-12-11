@@ -2,12 +2,11 @@
 Example Arduiono sketch to turn on and off the stove in
 a similar way to how a relay work.
 
-Note that this code was not tested but it "should" work.
-Please report your findings and I will update this text.
-
 It watches logic level on pin defined as INPUT_PIN and on:
-- change from HIGH to LOW: turns on the store
-- change from LOW to HIGH: turns off the stove
+- change from HIGH to LOW: turns on the store by sending
+  0x80 0x21 0x01 0xA2
+- change from LOW to HIGH: turns off the stove by sending
+  0x80 0x21 0x00 0xA2
 
 It expects HIGH to be initial state.
 
@@ -63,11 +62,13 @@ bool sendRwms(RwmsType type, uint16_t address, byte value) {
 void turnOn() {
   debug_blink();
   sendRwms(RWMS_RAM, 0x21, 1);
+  delay(10000); // block for some time
 }
 
 void turnOff() {
   debug_blink();
   sendRwms(RWMS_RAM, 0x21, 0);
+  delay(10000); // block for some time
 }
 
 void setup() {
