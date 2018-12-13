@@ -28,16 +28,15 @@ enum RwmsType {
 };
 
 void debug_blink()
-{
-  const char pin = 13;
-  pinMode(pin, OUTPUT);
-  digitalWrite(pin, HIGH);
+{ 
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, HIGH);
   delay(100);
-  digitalWrite(pin, LOW);
+  digitalWrite(LED_PIN, LOW);
   delay(100);
-  digitalWrite(pin, HIGH);
+  digitalWrite(LED_PIN, HIGH);
   delay(300);
-  digitalWrite(pin, LOW);
+  digitalWrite(LED_PIN, LOW);
   delay(300);
 }
 
